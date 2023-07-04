@@ -1,0 +1,40 @@
+﻿@model List<CartProduct>
+<table class="table table-bordered border-primary">
+    <thead>
+        <tr>
+            <th scope="col">Ürün Adı</th>
+            <th scope="col">Ürün Fiyatı</th>
+            <th scope="col">Miktar</th>
+            <th scope="col">Tutar</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Product.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Product.Price) TL</td>
+                <td>@Html.DisplayFor(modelItem => item.Quantity)</td>
+                <td>@Html.DisplayFor(modelItem => item.Price) TL</td>
+            </tr>
+        }
+
+        <tr>
+            <td colspan="4">
+                Toplam Tutar: @Model.Sum(x => x.Price) TL
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                KDV Oranı: %18
+            </td>
+        </tr>
+        <tr>
+            <td colspan="4">
+                KDV'li Tutar: @(Model.Sum(x => x.Price) * 1.18m) TL
+            </td>
+        </tr>
+
+    </tbody>
+</table>
